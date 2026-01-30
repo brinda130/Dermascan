@@ -1,33 +1,56 @@
-# DermaScan 
+# DermaScan 🧴🔬  
 AI-Based Skin Disease Detection System
 
-DermaScan is a full-stack AI-powered web application designed to assist in the early detection of skin diseases using deep learning models. The system allows users to upload skin images, which are analyzed using trained neural network models to provide predictive insights.
-
----
+DermaScan is a full-stack AI-powered web application designed to assist in the early detection of skin diseases using deep learning techniques. Users can upload skin images, which are analyzed by trained neural network models to provide predictive insights and relevant information.
 
 ##  Features
 
-- Skin disease detection using deep learning
-- Image-based diagnosis
+- AI-based skin disease detection
+- Image upload and analysis
 - User-friendly web interface
-- Multiple informational pages (diet, history, FAQ, community, etc.)
-- Backend API for handling requests
-- Trained ML models for prediction
+- Informational pages (Diet, FAQ, History, Community)
+- Backend API handling
+- Deep learning model integration
 
----
+##  Output Screenshots
 
-##  Tech Stack
+###  Home / Landing Page
+<p align="center">
+  <img src="screenshots/first_page.png" width="600">
+</p>
 
-### Frontend
-- HTML
-- CSS
-- JavaScript
+###  Scan Page
+<p align="center">
+  <img src="screenshots/scan.png" width="600">
+</p>
 
-### Backend
-- Node.js
-- Express.js
+###  Medical Information Page
+<p align="center">
+  <img src="screenshots/medical_info.png" width="600">
+</p>
 
-### Machine Learning
-- Python
-- PyTorch
-- Fine-tuned CNN models
+###  Notifications Page
+<p align="center">
+  <img src="screenshots/notification.png" width="600">
+</p>
+
+###  Community Page
+<p align="center">
+  <img src="screenshots/community.png" width="600">
+</p>
+
+###  Diet Recommendation Page
+<p align="center">
+  <img src="screenshots/diet_rec.png" width="600">
+</p>
+
+###  History Page
+<p align="center">
+  <img src="screenshots/history.png" width="600">
+</p>
+
+###  Scan Result Page
+<p align="center">
+  <img src="screenshots/scanre.png" width="600">
+</p>
+
