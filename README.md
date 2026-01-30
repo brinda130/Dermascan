@@ -31,7 +31,7 @@ DermaScan is a full-stack AI-powered web application designed to assist in the e
 
 ###  Notifications Page
 <p align="center">
-  <img src="screenshots/notification.png" width="600">
+  <img src="screenshots/notifications.png" width="600">
 </p>
 
 ###  Community Page
