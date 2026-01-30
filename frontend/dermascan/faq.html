@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DermaScan | FAQ</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f5f9fc;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .navbar {
+      background-color: #0077b6;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      color: #0077b6;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .faq-item {
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      position: relative;
+      user-select: none;
+      color: #023e8a;
+    }
+
+    .faq-question::after {
+      content: "+";
+      position: absolute;
+      right: 1.5rem;
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-question::after {
+      content: "-";
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      padding: 0 1.5rem 1.2rem 1.5rem;
+      line-height: 1.5;
+      display: none;
+      color: #444;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    footer {
+      background-color: #023e8a;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">DermaScan</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="info.html">Medical Info</a></li>
+      <li><a href="scan.html">Scan</a></li>
+      <li><a href="notifications.html">Notifications</a></li>
+      <li><a href="history.html">History</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="diet.html">Diet</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="signin.html">Sign In</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Frequently Asked Questions</h1>
+
+    <div class="faq-item">
+      <div class="faq-question">What is DermaScan and how does it work?</div>
+      <div class="faq-answer">
+        DermaScan is an AI-powered platform that helps you analyze and detect potential skin diseases through image scans. Our technology uses advanced algorithms to provide preliminary insights but does not replace professional medical diagnosis.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Is the AI scan accurate?</div>
+      <div class="faq-answer">
+        While our AI is trained on a large dataset to provide accurate predictions, it is not 100% foolproof. Always consult a certified dermatologist for a definitive diagnosis.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How do I perform a skin scan?</div>
+      <div class="faq-answer">
+        Simply upload a clear photo of the affected skin area under good lighting conditions. Avoid makeup or filters to ensure the best analysis results.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How is my personal and medical information protected?</div>
+      <div class="faq-answer">
+        We take your privacy seriously. All your data is encrypted and stored securely, and we do not share your information with third parties without your consent.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Can DermaScan replace a doctor?</div>
+      <div class="faq-answer">
+        No. DermaScan is a tool to assist and inform you but cannot replace professional medical advice, diagnosis, or treatment.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">What should I do if I get a concerning result?</div>
+      <div class="faq-answer">
+        If DermaScan flags a potential issue, please consult a dermatologist promptly for further evaluation.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How do I update my medical information?</div>
+      <div class="faq-answer">
+        You can update your profile and medical information anytime from the Medical Info page after signing in.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Who can use DermaScan?</div>
+      <div class="faq-answer">
+        DermaScan is designed for individuals aged 18 and above who want to monitor their skin health conveniently using AI technology.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">What if I face technical issues with the app?</div>
+      <div class="faq-answer">
+        For technical support, please contact our support team via the Contact Us section or email support@dermascan.com.
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 DermaScan. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // FAQ toggle logic
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      item.querySelector('.faq-question').addEventListener('click', () => {
+        // Close all open items except this one
+        faqItems.forEach(i => {
+          if (i !== item) i.classList.remove('active');
+        });
+
+        // Toggle current
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

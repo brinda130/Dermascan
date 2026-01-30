@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DermaScan | Scan</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .navbar {
+      background-color: #0077b6;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .scan-container {
+      flex: 1;
+      padding: 2rem;
+      padding-bottom: 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .scan-container h2 {
+      margin-bottom: 1rem;
+      color: #023e8a;
+    }
+
+    input[type="file"],
+    button.scan-button {
+      margin: 1rem 0;
+      padding: 0.75rem;
+      width: 300px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button.scan-button {
+      background-color: #0077b6;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button.scan-button:hover {
+      background-color: #023e8a;
+    }
+
+    .symptom-buttons {
+      max-width: 600px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .symptom-btn {
+      background-color: #e0f7fa;
+      color: #023e8a;
+      border: 1px solid #0077b6;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+
+    .symptom-btn:hover {
+      background-color: #b3e5fc;
+    }
+
+    .symptom-btn.selected {
+      background-color: #0077b6;
+      color: white;
+      border-color: #023e8a;
+    }
+
+    .prediction-box {
+      margin-top: 2rem;
+      padding: 1rem;
+      background-color: #e0f7fa;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      display: none;
+    }
+
+    footer {
+      background-color: #023e8a;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo">DermaScan</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="info.html">Medical Info</a></li>
+      <li><a href="scan.html">Scan</a></li>
+      <li><a href="history.html">History</a></li>
+      <li><a href="diet.html">Diet</a></li>
+      <li><a href="notifications.html">Notifications</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="signin.html">Sign In</a></li>
+    </ul>
+  </nav>
+
+  <section class="scan-container">
+    <h2>Scan Your Skin</h2>
+    <input type="file" accept="image/*" id="skinImage" />
+
+    <h3>Select Symptoms</h3>
+    <div class="symptom-buttons" id="symptomButtons"></div>
+
+    <button onclick="runScan()" class="scan-button">Scan Now</button>
+
+    <div id="result" class="prediction-box">
+      <h3>Prediction Result</h3>
+      <p>Your results will appear here after scanning.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 DermaScan. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const allSymptoms = [
+      "Pimples, redness, bumps on the face.",
+      "Itchy, red, circular rashes, often on the body or scalp.",
+      "Dry, itchy, and inflamed skin patches.",
+      "Red, itchy rash with bumps or blisters from contact with an irritant.",
+      "Raised, itchy welts on the skin, often from an allergic reaction.",
+      "Red, swollen, painful skin, sometimes with sores or blisters.",
+      "Intensely itchy rash, sometimes with burrow tracks or a target-like appearance.",
+      "Rough, scaly patches or new skin growths from sun exposure.",
+      "Thick, red, scaly patches on the skin.",
+      "Small, fleshy bumps on the skin.",
+      "Small, fleshy bumps on the skin caused by a virus.",
+      "Swelling with burning sensation on affected skin.",
+      "Target-shaped rash expanding outward (Lyme disease).",
+      "Thick, red, scaly patches on the skin.",
+      "Thickened, cracked, or scaly skin areas.",
+      "Tiny blisters or bumps between fingers, wrists, or waist.",
+      "Tiny pearly bumps with central dimples (molluscum).",
+      "Warm and tender skin patches spreading quickly.",
+      "White patches or cracks in moist areas like mouth or groin.",
+      "Yellowish crusty lesions, especially on the face (impetigo)."
+    ];
+
+    const symptomButtonsContainer = document.getElementById("symptomButtons");
+
+    function createSymptomButtons() {
+      allSymptoms.forEach((symptom) => {
+        const button = document.createElement("button");
+        button.classList.add("symptom-btn");
+        button.textContent = symptom;
+        button.setAttribute("data-symptom", symptom);
+        button.addEventListener("click", () => {
+          button.classList.toggle("selected");
+        });
+        symptomButtonsContainer.appendChild(button);
+      });
+    }
+
+    createSymptomButtons();
+
+    async function runScan() {
+      const fileInput = document.getElementById("skinImage");
+      const resultBox = document.getElementById("result");
+      const selectedButtons = document.querySelectorAll(".symptom-btn.selected");
+      const buttonSymptoms = Array.from(selectedButtons).map((btn) =>
+        btn.getAttribute("data-symptom")
+      );
+
+      if (!fileInput.files[0]) {
+        alert("Please upload an image first!");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("image", fileInput.files[0]);
+      formData.append("symptoms", buttonSymptoms.join(" ||| "));
+
+      try {
+        const response = await fetch("http://127.0.0.1:8000/predict", {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await response.json();
+
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `
+          <h3>Prediction Result</h3>
+          <p><strong>Possible Condition:</strong> ${data.prediction}</p>
+          <p><strong>Note:</strong> This is an AI-based prediction. Please consult a dermatologist for confirmation.</p>
+        `;
+
+        localStorage.setItem("lastCondition", data.prediction);
+
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          const imageData = event.target.result;
+          const scanData = {
+            date: new Date().toLocaleDateString(),
+            prediction: data.prediction,
+            confidence: data.confidence,
+            image: imageData,
+          };
+
+          let history =
+            JSON.parse(localStorage.getItem("dermaScanHistory")) || [];
+          history.unshift(scanData);
+          localStorage.setItem("dermaScanHistory", JSON.stringify(history));
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+      } catch (error) {
+        console.error(error);
+        alert("Error while connecting to AI server");
+      }
+    }
+  </script>
+</body>
+</html>

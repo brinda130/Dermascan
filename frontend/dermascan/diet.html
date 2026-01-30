@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DermaScan | Diet & Care Tips</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .navbar {
+      background-color: #0077b6;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .diet-container {
+      flex: 1;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .diet-container h1 {
+      margin-bottom: 1rem;
+      color: #023e8a;
+    }
+
+    .diet-container h3 {
+      margin-bottom: 1.5rem;
+      color: #0077b6;
+    }
+
+    .section {
+      background: #e0f7fa;
+      padding: 1.5rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin: 1rem 0;
+      width: 100%;
+      max-width: 700px;
+      text-align: left;
+    }
+
+    .section h3 {
+      margin-top: 0;
+      color: #023e8a;
+    }
+
+    ul {
+      line-height: 1.6;
+      padding-left: 1.5rem;
+    }
+
+    a {
+      color: #0077b6;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background-color: #023e8a;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">DermaScan</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="info.html">Medical Info</a></li>
+      <li><a href="scan.html">Scan</a></li>
+      <li><a href="history.html">History</a></li>
+      <li><a href="diet.html">Diet</a></li>
+      <li><a href="notifications.html">Notifications</a></li>
+      <li><a href="community.html">Community</a></li>      
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="signin.html">Sign In</a></li>
+    </ul>
+  </nav>
+
+  <section class="diet-container">
+    <h1>Personalized Diet & Skincare Tips</h1>
+    <h3 id="condition"></h3>
+
+    <div class="section" id="tips"></div>
+
+    <p style="margin-top:20px;">
+      <a href="scan.html">Back to Scan</a>
+    </p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 DermaScan. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Get last scanned condition
+    const condition = localStorage.getItem('lastCondition') || 'Unknown';
+
+    // Disease data: info + diet + care
+    const careTips = {
+      "Acne/Rosacea": {
+  info: "Acne and rosacea are common skin conditions characterized by redness, bumps, and inflammation. Acne is caused by clogged pores and excess oil production, while rosacea involves chronic inflammation of facial blood vessels, leading to persistent redness and sensitivity.",
+  link: "https://en.wikipedia.org/wiki/Acne",
+  diet: [
+    "Eat foods rich in omega-3 fatty acids such as salmon, walnuts, and chia seeds to reduce inflammation.",
+    "Increase intake of zinc-rich foods like pumpkin seeds, lentils, and chickpeas for faster skin healing.",
+    "Consume antioxidant-rich fruits and vegetables to prevent oxidative stress on the skin.",
+    "Avoid high-glycemic foods (white bread, sugary drinks) that trigger insulin spikes and worsen acne.",
+    "Limit dairy intake, especially skim milk, which may exacerbate breakouts."
+  ],
+  care: [
+    "Use a gentle, non-comedogenic cleanser twice daily.",
+    "Apply oil-free moisturizers and sunscreens regularly.",
+    "Avoid touching or squeezing pimples to prevent scarring.",
+    "Use dermatologist-approved topical treatments with benzoyl peroxide, salicylic acid, or retinoids.",
+    "For rosacea, avoid triggers such as spicy food, hot drinks, and alcohol."
+  ]
+},
+
+"Bacterial Infection": {
+  info: "Bacterial skin infections occur when bacteria invade damaged skin, leading to redness, swelling, warmth, and sometimes pus formation. Common examples include impetigo, cellulitis, and folliculitis.",
+  link: "https://en.wikipedia.org/wiki/Bacterial_skin_infection",
+  diet: [
+    "Eat foods rich in vitamin C and zinc (citrus fruits, spinach, pumpkin seeds) to boost immune function.",
+    "Include probiotic-rich foods like yogurt and kefir to promote beneficial gut bacteria.",
+    "Consume lean proteins (chicken, fish, legumes) for tissue repair.",
+    "Stay hydrated to support healing and detoxification.",
+    "Avoid processed foods and refined sugars that promote inflammation."
+  ],
+  care: [
+    "Keep the affected area clean and covered with a sterile dressing if needed.",
+    "Avoid scratching to prevent spreading the infection.",
+    "Use prescribed antibiotic ointments or oral antibiotics if necessary.",
+    "Wash hands frequently to avoid reinfection.",
+    "Seek medical help if redness spreads or fever develops."
+  ]
+},
+
+"Contact Dermatitis": {
+  info: "Contact dermatitis is inflammation of the skin caused by contact with irritants or allergens, leading to redness, itching, and rashes. Common triggers include detergents, cosmetics, metals, and certain plants.",
+  link: "https://en.wikipedia.org/wiki/Contact_dermatitis",
+  diet: [
+    "Include antioxidant-rich foods (berries, leafy greens, citrus fruits) to help reduce inflammation.",
+    "Eat omega-3 fatty acid sources such as flaxseeds, walnuts, and fish to support skin health.",
+    "Consume probiotic-rich foods to improve immune balance.",
+    "Avoid potential allergenic foods (nuts, dairy, eggs) if they worsen symptoms.",
+    "Stay hydrated to maintain skin moisture and function."
+  ],
+  care: [
+    "Identify and avoid contact with the triggering substance.",
+    "Clean the affected area with mild, fragrance-free soap and water.",
+    "Apply hypoallergenic moisturizers and emollients to reduce dryness.",
+    "Use hydrocortisone cream or other anti-inflammatory treatments as advised.",
+    "Wear gloves when handling chemicals or detergents."
+  ]
+},
+
+"Eczema": {
+  info: "Eczema (atopic dermatitis) is a chronic inflammatory skin condition that causes dry, itchy, and scaly patches. It often flares due to environmental triggers, allergens, or stress.",
+  link: "https://en.wikipedia.org/wiki/Dermatitis",
+  diet: [
+    "Consume anti-inflammatory foods like turmeric, fatty fish, olive oil, and green vegetables.",
+    "Include probiotic foods such as yogurt and sauerkraut to improve gut-skin health.",
+    "Eat foods rich in vitamin D, E, and omega-3 to maintain skin barrier function.",
+    "Avoid processed foods and allergens such as dairy or gluten if they trigger flare-ups."
+  ],
+  care: [
+    "Moisturize frequently, especially after bathing, with fragrance-free products.",
+    "Avoid long, hot showers — use lukewarm water instead.",
+    "Wear soft, breathable fabrics like cotton.",
+    "Avoid harsh soaps and detergents.",
+    "Manage stress and avoid scratching to prevent infection."
+  ]
+},
+
+"Fungal Infection": {
+  info: "Fungal infections are caused by overgrowth of fungi on the skin, leading to itching, redness, peeling, and sometimes circular patches. Common examples include ringworm, athlete’s foot, and yeast infections.",
+  link: "https://en.wikipedia.org/wiki/Fungal_skin_infection",
+  diet: [
+    "Eat antifungal foods like garlic, coconut oil, and turmeric.",
+    "Include probiotics (yogurt, kefir) to restore gut flora.",
+    "Reduce sugar intake as fungi thrive on glucose.",
+    "Increase vitamin C and zinc intake to enhance immunity.",
+    "Stay hydrated and maintain a balanced diet to promote healing."
+  ],
+  care: [
+    "Keep the infected area clean and dry at all times.",
+    "Avoid tight clothing and synthetic fabrics that trap moisture.",
+    "Use antifungal creams or powders as prescribed.",
+    "Do not share towels, razors, or clothing.",
+    "Wash bedding and clothes regularly to prevent reinfection."
+  ]
+},
+
+"Hives": {
+  info: "Hives (urticaria) are itchy, raised welts on the skin caused by an allergic reaction or immune response. They can appear suddenly and may last from a few hours to several days.",
+  link: "https://en.wikipedia.org/wiki/Urticaria",
+  diet: [
+    "Eat anti-inflammatory foods like turmeric, ginger, and leafy greens.",
+    "Include vitamin C-rich fruits (oranges, kiwi, strawberries) to reduce histamine levels.",
+    "Stay hydrated to help flush out allergens.",
+    "Avoid known trigger foods such as shellfish, nuts, eggs, or artificial additives.",
+    "Consume omega-3-rich foods to reduce allergic inflammation."
+  ],
+  care: [
+    "Avoid scratching to prevent worsening the reaction.",
+    "Apply cold compresses or soothing lotions like calamine.",
+    "Wear loose-fitting, cotton clothing.",
+    "Identify and avoid known allergens or stress triggers.",
+    "Use antihistamines if recommended by a healthcare professional."
+  ]
+},
+
+"Infestations/Bites": {
+  info: "Infestations or bites occur when insects or parasites such as mosquitoes, mites, or lice irritate the skin, causing redness, itching, and swelling.",
+  link: "https://en.wikipedia.org/wiki/Arthropod_bite",
+  diet: [
+    "Eat foods rich in vitamin C and zinc to help skin heal faster.",
+    "Include anti-inflammatory foods like turmeric and leafy greens.",
+    "Stay hydrated and eat antioxidant-rich fruits to reduce swelling.",
+    "Avoid excessive sugar, which may increase inflammation."
+  ],
+  care: [
+    "Clean the affected area with soap and water immediately.",
+    "Apply cold compresses to reduce swelling and itching.",
+    "Use soothing creams or antihistamines for relief.",
+    "Avoid scratching to prevent secondary infection.",
+    "Seek medical help if there are signs of infection or severe allergic reactions."
+  ]
+},
+
+"Potentially Malignant Lesions": {
+  info: "Potentially malignant skin lesions are abnormal growths that may develop into skin cancer. They often appear as irregular moles, patches, or sores that don’t heal properly.",
+  link: "https://en.wikipedia.org/wiki/Skin_cancer",
+  diet: [
+    "Consume antioxidant-rich foods (berries, carrots, leafy greens) to combat oxidative stress.",
+    "Include foods high in vitamin D and E for immune and skin health.",
+    "Avoid excessive processed meats, alcohol, and sugary foods.",
+    "Stay hydrated and maintain a balanced diet with fresh produce."
+  ],
+  care: [
+    "Monitor moles and patches for any change in size, color, or shape.",
+    "Avoid excessive sun exposure and use sunscreen daily.",
+    "Wear protective clothing and wide-brimmed hats when outdoors.",
+    "Avoid tanning beds and smoking.",
+    "Seek immediate dermatological evaluation for suspicious lesions."
+  ]
+}
+,
+
+      "Unknown": {
+        info: "Your condition could not be determined accurately. Maintaining healthy habits and consulting a dermatologist will help you get the right diagnosis and treatment.",
+        link: "https://www.aad.org/public/diseases/a-z/skin-care",
+        diet: [
+          "Eat a balanced diet rich in vitamins and antioxidants.",
+          "Stay hydrated with at least 2 liters of water daily.",
+          "Limit processed foods and sugary drinks.",
+          "Include lean proteins and whole grains."
+        ],
+        care: [
+          "Keep your skin clean and moisturized.",
+          "Avoid harsh skincare products.",
+          "Seek professional medical advice for accurate diagnosis."
+        ]
+      }
+    };
+
+    const selected = careTips[condition] || careTips["Unknown"];
+
+    document.getElementById("condition").textContent = `Detected Condition: ${condition}`;
+    document.getElementById("tips").innerHTML = `
+      <h3>About ${condition}</h3>
+      <p>${selected.info}</p>
+      <p><strong>Learn more:</strong> <a href="${selected.link}" target="_blank">Click here</a></p>
+
+      <h3>Recommended Diet</h3>
+      <ul>${selected.diet.map(d => `<li>${d}</li>`).join('')}</ul>
+
+      <h3>Skincare Tips</h3>
+      <ul>${selected.care.map(c => `<li>${c}</li>`).join('')}</ul>
+    `;
+  </script>
+</body>
+</html>

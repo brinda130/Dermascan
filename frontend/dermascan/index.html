@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DermaScan | Home</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .navbar {
+      background-color: #0077b6;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .hero {
+      flex: 1;
+      /* background: linear-gradient(to right, #caf0f8, #ade8f4); */
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      height: 100vh;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      color: #023e8a;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #333;
+      margin-bottom: 1.5rem;
+      max-width: 600px;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      background-color: #0077b6;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #023e8a;
+    }
+
+    footer {
+      background-color: #023e8a;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">DermaScan</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="info.html">Medical Info</a></li>
+      <li><a href="scan.html">Scan</a></li>
+      <li><a href="notifications.html">Notifications</a></li>
+      <li><a href="history.html">History</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="diet.html">Diet</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="signin.html">Sign In</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to DermaScan</h1>
+    <p>Use our powerful AI technology to scan, analyze and predict skin diseases in three simple steps — fast and free!</p>
+    <a href="signup.html" class="btn">Get Started</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 DermaScan. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

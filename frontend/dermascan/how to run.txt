@@ -1,0 +1,17 @@
+
+to run open two terminals
+
+first terminal:
+python -m venv venv
+venv\Scripts\Activate.ps1
+pip install torch torchvision timm transformers Pillow fastapi uvicorn
+cd frontend1
+cd dermascan
+python -m uvicorn main:app --reload
+
+
+second terminal
+cd backend
+node server.js
+
+to officially run click on index.html and press Go live

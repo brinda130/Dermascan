@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DermaScan | History</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f9fc;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    nav.navbar {
+      background-color: #0077b6;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav.navbar .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav.navbar .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    nav.navbar .nav-links a:hover {
+      text-decoration: underline;
+    }
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem 2rem;
+    }
+    h1 {
+      color: #0077b6;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .scan-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .scan-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease;
+    }
+    .scan-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+    }
+    .scan-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 1px solid #ddd;
+    }
+    .scan-info {
+      padding: 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .scan-info p {
+      margin: 0.3rem 0;
+      font-size: 0.9rem;
+      color: #023e8a;
+    }
+    .scan-info p strong {
+      color: #0077b6;
+    }
+    .scan-info button {
+      align-self: flex-start;
+      margin-top: 1rem;
+      background-color: #0077b6;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .scan-info button:hover {
+      background-color: #005f8a;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background: #023e8a;
+      color: white;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    .close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      color: #0077b6;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">DermaScan</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="info.html">Medical Info</a></li>
+      <li><a href="scan.html">Scan</a></li>
+      <li><a href="history.html" class="active-link">History</a></li>
+      <li><a href="diet.html">Diet</a></li>
+      <li><a href="notifications.html">Notifications</a></li>
+      
+      <li><a href="community.html">Community</a></li>
+      
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="signin.html">Sign In</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Your Scan History</h1>
+    <div class="scan-list">
+
+      <div class="scan-card">
+        <img src="images/download6.jpeg" alt="Scan Image" />
+        <div class="scan-info">
+          <p><strong>Date:</strong> 12 May 2025</p>
+          <p><strong>Condition Predicted:</strong> Eczema</p>
+          <p><strong>Confidence:</strong> 92%</p>
+          <button onclick="openModal('12 May 2025', 'Eczema', '92%', 'images/download6.jpeg')">View Details</button>
+        </div>
+      </div>
+
+      <div class="scan-card">
+        <img src="images/download7.jpeg" alt="Scan Image" />
+        <div class="scan-info">
+          <p><strong>Date:</strong> 20 April 2025</p>
+          <p><strong>Condition Predicted:</strong> Psoriasis</p>
+          <p><strong>Confidence:</strong> 85%</p>
+          <button onclick="openModal('20 April 2025', 'Psoriasis', '85%', 'images/download7.jpeg')">View Details</button>
+        </div>
+      </div>
+
+      <div class="scan-card">
+        <img src="images/imagessample-scan1.jpg" alt="Scan Image" />
+        <div class="scan-info">
+          <p><strong>Date:</strong> 5 March 2025</p>
+          <p><strong>Condition Predicted:</strong> Acne</p>
+          <p><strong>Confidence:</strong> 78%</p>
+          <button onclick="openModal('5 March 2025', 'Acne', '78%', 'images/imagessample-scan1.jpg')">View Details</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Modal -->
+  <div id="detailModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Scan Details</h2>
+      <img id="modalImg" src="" alt="Scan Image" style="width: 100%; height: auto; margin-top: 1rem; border-radius: 8px;" />
+      <p><strong>Date:</strong> <span id="modalDate"></span></p>
+      <p><strong>Condition:</strong> <span id="modalCondition"></span></p>
+      <p><strong>Confidence:</strong> <span id="modalConfidence"></span></p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 DermaScan. All rights reserved.</p>
+  </footer>
+<script>
+  function loadHistory() {
+    const historyContainer = document.querySelector(".scan-list");
+    const history = JSON.parse(localStorage.getItem("dermaScanHistory")) || [];
+
+    historyContainer.innerHTML = "";
+
+    if (history.length === 0) {
+      historyContainer.innerHTML = "<p style='text-align:center;color:#555;'>No scan history yet. Try scanning from the Scan page.</p>";
+      return;
+    }
+
+    history.forEach((entry, index) => {
+      const card = document.createElement("div");
+      card.classList.add("scan-card");
+      card.innerHTML = `
+        <img src="${entry.image}" alt="Scan Image" />
+        <div class="scan-info">
+          <p><strong>Date:</strong> ${entry.date}</p>
+          <p><strong>Condition Predicted:</strong> ${entry.prediction}</p>
+          <p><strong>Confidence:</strong> ${entry.confidence}</p>
+          <div style="display:flex; gap:0.5rem;">
+            <button onclick="openModal('${entry.date}', '${entry.prediction}', '${entry.confidence}', '${entry.image}')">View</button>
+            <button onclick="deleteHistory(${index})" style="background-color:#e63946;">Delete</button>
+          </div>
+        </div>
+      `;
+      historyContainer.appendChild(card);
+    });
+  }
+
+  function openModal(date, condition, confidence, imageSrc) {
+    document.getElementById('modalDate').textContent = date;
+    document.getElementById('modalCondition').textContent = condition;
+    document.getElementById('modalConfidence').textContent = confidence;
+    document.getElementById('modalImg').src = imageSrc;
+    document.getElementById('detailModal').style.display = 'block';
+  }
+
+  function closeModal() {
+    document.getElementById('detailModal').style.display = 'none';
+  }
+
+  window.onclick = function(event) {
+    const modal = document.getElementById('detailModal');
+    if (event.target == modal) {
+      modal.style.display = 'none';
+    }
+  }
+
+  // 🗑️ Delete one history entry
+  function deleteHistory(index) {
+    if (confirm("Are you sure you want to remove this record?")) {
+      let history = JSON.parse(localStorage.getItem("dermaScanHistory")) || [];
+      history.splice(index, 1); // remove one entry
+      localStorage.setItem("dermaScanHistory", JSON.stringify(history));
+      loadHistory(); // refresh UI
+    }
+  }
+
+  // ✅ Load when page opens
+  window.onload = loadHistory;
+</script>
+
+
+</body>
+</html>

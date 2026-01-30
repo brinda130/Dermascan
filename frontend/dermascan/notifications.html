@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DermaScan | Notifications</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f9fc;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav.navbar {
+      background-color: #0077b6;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav.navbar .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav.navbar .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav.navbar .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      flex: 1;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem 2rem;
+    }
+
+    h1 {
+      color: #0077b6;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
+    }
+
+    .filter-buttons button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #0077b6;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .filter-buttons button.active,
+    .filter-buttons button:hover {
+      background-color: #005f8a;
+    }
+
+    .notification-card {
+      background: #ffffff;
+      border-left: 5px solid #0077b6;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .notification-card.unread {
+      background-color: #e7f3ff;
+    }
+
+    .notification-card .icon {
+      font-size: 1.8rem;
+    }
+
+    .notification-card .content .title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+      color: #023e8a;
+    }
+
+    .notification-card .content .message {
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+      color: #333;
+    }
+
+    .notification-card .content .timestamp {
+      font-size: 0.75rem;
+      color: #777;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background: #023e8a;
+      color: white;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">DermaScan</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="info.html">Medical Info</a></li>
+      <li><a href="scan.html">Scan</a></li>
+      <li><a href="notifications.html" class="active-link">Notifications</a></li>
+      <li><a href="history.html">History</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="diet.html">Diet</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="signin.html">Sign In</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Your Notifications</h1>
+
+    <div class="filter-buttons">
+      <button id="allBtn" class="active">All</button>
+      <button id="unreadBtn">Unread</button>
+    </div>
+
+    <div class="notification-card unread" data-status="unread">
+      <div class="icon"></div>
+      <div class="content">
+        <p class="title">New Scan Result Available</p>
+        <p class="message">Your skin scan from 21 May 2025 has been analyzed. Confidence: 90% - Possible Psoriasis.</p>
+        <p class="timestamp">1 hour ago</p>
+      </div>
+    </div>
+
+    <div class="notification-card unread" data-status="unread">
+      <div class="icon"></div>
+      <div class="content">
+        <p class="title">Skincare Tip</p>
+        <p class="message">Moisturize daily to help prevent flare-ups for dry skin conditions like eczema.</p>
+        <p class="timestamp">2 days ago</p>
+      </div>
+    </div>
+
+    <div class="notification-card" data-status="read">
+      <div class="icon"></div>
+      <div class="content">
+        <p class="title">Community Reply</p>
+        <p class="message">Someone responded to your post in the Psoriasis support group.</p>
+        <p class="timestamp">3 days ago</p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 DermaScan. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const allBtn = document.getElementById('allBtn');
+    const unreadBtn = document.getElementById('unreadBtn');
+    const cards = document.querySelectorAll('.notification-card');
+
+    allBtn.addEventListener('click', () => {
+      allBtn.classList.add('active');
+      unreadBtn.classList.remove('active');
+      cards.forEach(card => card.style.display = 'flex');
+    });
+
+    unreadBtn.addEventListener('click', () => {
+      allBtn.classList.remove('active');
+      unreadBtn.classList.add('active');
+      cards.forEach(card => {
+        card.style.display = card.dataset.status === 'unread' ? 'flex' : 'none';
+      });
+    });
+  </script>
+
+</body>
+</html>
